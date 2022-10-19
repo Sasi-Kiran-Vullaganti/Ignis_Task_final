@@ -9,3 +9,10 @@ By default, is_liked is false.
 Create a form to add a new event/entry to the database.
 If the event is liked, the heart should be colored red, else white.
 Note : the changes made in the UI should be reflected on the database too.
+
+Step-1 -> Download and unzip the folder and open in vscode.
+step-2 -> open terminal and run the cmd--> .\venv\Scripts\activate now "cd Ignis_Task"
+step-3 -> pip install -r requirements.txt
+step-4 -> python manage.py makemigrations
+step-5 -> python manage.py migrate
+step-6 -> python manage.py runserver
