@@ -1,3 +1,13 @@
+Step-1 -> Download and unzip the folder and open in vscode.
+step-2 -> open terminal and run the cmd--> .\venv\Scripts\activate now "cd Ignis_Task"
+step-3 -> pip install -r requirements.txt
+step-4 -> python manage.py makemigrations
+step-5 -> python manage.py migrate
+step-6 -> python manage.py runserver
+
+
+
+useful commands:
 python -m venv venv
 .\venv\Scripts\activate
 pip install django
