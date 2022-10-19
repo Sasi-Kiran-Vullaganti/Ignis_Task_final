@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ignis Tech Solutions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <style>
+      body {
+            background-image: url("https://img.freepik.com/free-photo/blurred-abstract-background-interior-view-looking-out-toward-empty-office-lobby-entrance-doors-glass-curtain-wall-with-frame_1339-6370.jpg?w=996&t=st=1666091444~exp=1666092044~hmac=f933b096c13b86e9322cad45f67d049fbbedd048cb4ff8861df6c49ad3c8d72d");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+      .shad {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+    </style>
+  </head>
+  <body>
+    
+
+    <!-- Navbar -->
+    <nav class="navbar shad navbar-expand-lg bg-light" style="padding: 7px;">
+      <div class="container">
+        <a class="navbar-brand" href="#"><b>Ignis Tech Solutions</b></a>
+        <ul class="nav justify-content-end">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{% url 'addEvent' %}"><button class="btn btn-info">Add a new event</button></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{% url 'home' %}"><button class="btn btn-info">View All event</button></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{% url 'allLikedEvents' %}"><button class="btn btn-info">View Liked Events</button></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+
+    <!-- Event Container -->
+    <div class="container" ><br>
+      <div class="row"><br>
+        <div class="col-md-10 m-auto" style="margin-top: 100px;padding:30px;background-color: white;">
+          {% if message %}
+          <div class="alert alert-success" role="alert">
+            A simple success alert—check it out!
+          </div>
+          {% endif %}
+          <h2 style="text-align: center;">All Events</h2>
+          
+          <div class="row">
+            {% for e in events %}
+            <div class="col-md-4" style="padding: 20px;">
+              <div class="card shad" style="width: 18rem;height: 28rem;">
+                {% if e.event_image %}
+                <img class="card-img-top" style="height: 15rem;" src="{{e.event_image}}" alt="Card image cap">
+                {% else %}
+                <img class="card-img-top" style="height: 15rem;" src="https://img.freepik.com/free-vector/red-prohibited-sign-no-icon-warning-stop-symbol-safety-danger-isolated-vector-illustration_56104-912.jpg?w=826&t=st=1666152613~exp=1666153213~hmac=ba898484d559f10a1966deff077460354c7fd3cdcdd642db1b942b7eb4f052ca" alt="Card image cap">
+                {% endif %}
+                <div class="card-body">
+                  <h5 class="card-title"style="text-align:center">{{ e.event_name }}</h5>
+                  <p class="card-text">Location : {{e.location}}</p>
+                  <p class="card-text">Date : {{e.event_date}}</p>
+                  <p class="card-text">Time : {{e.event_time}}</p>
+                  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    {% if e.like %}
+                    <a href="{% url 'dislike' e.id %}">
+                      <button class="btn btn-danger me-md-2" type="button">Dislike Event</button>
+                    </a>
+                    {% else %}
+                    <a href="{% url 'like' e.id %}">
+                      <button class="btn btn-success me-md-2" type="button">Like Event</button>
+                    </a>
+                    
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+
+            
+            
+        </div>
+      </div>
+      
+      </div>
+    </div>
+
+<br><br>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  </body>
+</html>
